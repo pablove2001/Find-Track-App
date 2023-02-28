@@ -38,12 +38,18 @@ class _HomePageState extends State<HomePage> {
               // Replace this child with your own
               elevation: 8.0,
               shape: const CircleBorder(),
-              child: CircleAvatar(
-                backgroundColor: Colors.grey[100],
-                radius: 90.0,
-                child: Image.asset(
-                  'assets/images/music_icon.png',
-                  height: 110,
+              child: MaterialButton(
+                shape: const CircleBorder(),
+                onPressed: () {
+                  // print('funciona');
+                },
+                child: CircleAvatar(
+                  backgroundColor: Colors.grey[100],
+                  radius: 90.0,
+                  child: Image.asset(
+                    'assets/images/music_icon.png',
+                    height: 110,
+                  ),
                 ),
               ),
             ),
