@@ -1,16 +1,12 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:find_track_app/screens/favorite_songs.dart';
+import 'package:find_track_app/providers/find_songs_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
+import '../screens/favorite_songs.dart';
+
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  bool _listening = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +17,21 @@ class _HomePageState extends State<HomePage> {
             height: 100.0,
           ),
           Text(
-            _listening ? 'Escuchando...' : 'Toque para escuchar',
+            context.watch<FindSongsProvider>().getListening
+                ? 'Escuchando...'
+                : 'Toque para escuchar',
             style: const TextStyle(fontSize: 18),
           ),
           const SizedBox(
             height: 70,
           ),
           AvatarGlow(
-            glowColor: Colors.blue,
+            glowColor: Color.fromARGB(255, 130, 184, 255),
             endRadius: 150.0,
             duration: Duration(milliseconds: 1500),
             repeat: true,
-            showTwoGlows: _listening,
-            repeatPauseDuration: Duration(milliseconds: 100),
+            showTwoGlows: true,
+            animate: context.watch<FindSongsProvider>().getListening,
             child: Material(
               // Replace this child with your own
               elevation: 8.0,
@@ -41,7 +39,7 @@ class _HomePageState extends State<HomePage> {
               child: MaterialButton(
                 shape: const CircleBorder(),
                 onPressed: () {
-                  // print('funciona');
+                  context.read<FindSongsProvider>().setListening();
                 },
                 child: CircleAvatar(
                   backgroundColor: Colors.grey[100],
@@ -78,11 +76,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               MaterialButton(
-                onPressed: () {
-                  setState(() {
-                    _listening = !_listening;
-                  });
-                },
+                onPressed: () {},
                 color: Colors.white,
                 padding: const EdgeInsets.all(5),
                 shape: const CircleBorder(),
