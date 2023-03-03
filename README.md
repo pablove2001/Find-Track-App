@@ -27,7 +27,9 @@
 
 ![image](https://user-images.githubusercontent.com/52970365/222842658-3bc7341c-cee1-4a15-bb53-4d0251142f74.png)
 ![image](https://user-images.githubusercontent.com/52970365/222842857-24433e56-f9d1-44e9-937a-a6685dc7c500.png)
+
 - Error en HomePage:
+
 ![image](https://user-images.githubusercontent.com/52970365/222842953-c9c6b76f-e5a6-4d8e-afe1-64526212e9d0.png)
 
 -	Vistas de FavoriteSongs:
