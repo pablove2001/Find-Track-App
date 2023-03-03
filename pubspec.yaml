@@ -66,6 +66,7 @@ flutter:
     - assets/images/spotify.png
     - assets/images/deezer.png
     - assets/images/apple.png
+    - assets/images/icon_music.png
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

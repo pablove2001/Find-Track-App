@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:find_track_app/models/song.dart';
 import 'package:find_track_app/providers/find_songs_provider.dart';
@@ -48,7 +50,7 @@ class HomePage extends StatelessWidget {
                     backgroundColor: Colors.grey[100],
                     radius: 90.0,
                     child: Image.asset(
-                      'assets/images/music_icon.png',
+                      'assets/images/icon_music.png',
                       height: 110,
                     ),
                   ),
@@ -65,6 +67,8 @@ class HomePage extends StatelessWidget {
                 children: [
                   MaterialButton(
                     onPressed: () {
+                      var v2 = context.read<FindSongsProvider>().getSongs;
+                      var v3 = v2;
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => const FavoriteSongs(),
@@ -82,15 +86,10 @@ class HomePage extends StatelessWidget {
                   ),
                   MaterialButton(
                     onPressed: () {
-                      Song song = Song();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FoundSong(
-                            song: song,
-                          ),
-                        ),
-                      );
+                      print('pressed');
+                    },
+                    onLongPress: () {
+                      print('longpress');
                     },
                     color: Colors.white,
                     padding: const EdgeInsets.all(5),

@@ -26,12 +26,11 @@ class FindSongsProvider with ChangeNotifier {
   Future<void> _startRecord(Record audioRecorder, BuildContext context) async {
     String? base64 = await startRecord(audioRecorder);
 
-    String? v2 = base64;
-
     if (base64 != null) {
       Song? song = await requestApi(base64);
 
       if (song != null) {
+        setInitFavorite(song);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -39,6 +38,25 @@ class FindSongsProvider with ChangeNotifier {
               song: song,
             ),
           ),
+        );
+      } else {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text(
+                  'No se encontro la cancion o hay un problema de conexion'),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Ok'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          },
         );
       }
     }
@@ -48,14 +66,59 @@ class FindSongsProvider with ChangeNotifier {
   }
 
   // favorite
-  void setFavorite() {
-    if (!_favorite) {
-      _favorite = true;
-    }
+  void setFavorite(Song song) {
+    if (!_favorite)
+      addFavoriteSong(song);
+    else
+      removeFavoriteSong(song);
+
+    _favorite = !_favorite;
+    notifyListeners();
+  }
+
+  void setInitFavorite(Song song) {
+    _favorite = isFavorite(song);
     notifyListeners();
   }
 
   bool get getFavorite => _favorite;
 
-  void addFavoriteSong(Song song) {}
+  bool isFavorite(Song song) {
+    for (var s in _songs) {
+      if (s.title == song.title &&
+          s.album == song.album &&
+          s.artist == song.artist &&
+          s.releaseDate == song.releaseDate &&
+          s.image == song.image &&
+          s.spotify == song.spotify &&
+          s.deezer == song.deezer &&
+          s.apple == song.apple &&
+          s.auddIo == song.auddIo) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // songs
+  void addFavoriteSong(Song song) {
+    _songs.insert(0, song);
+  }
+
+  void removeFavoriteSong(Song song) {
+    _songs.removeWhere((s) =>
+        s.title == song.title &&
+        s.album == song.album &&
+        s.artist == song.artist &&
+        s.releaseDate == song.releaseDate &&
+        s.image == song.image &&
+        s.spotify == song.spotify &&
+        s.deezer == song.deezer &&
+        s.apple == song.apple &&
+        s.auddIo == song.auddIo);
+
+    notifyListeners();
+  }
+
+  List<Song> get getSongs => _songs;
 }

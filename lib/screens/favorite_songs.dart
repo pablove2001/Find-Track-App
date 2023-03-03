@@ -1,17 +1,11 @@
+import 'package:find_track_app/providers/find_songs_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/song.dart';
 import '../widgets/song_card.dart';
 
 class FavoriteSongs extends StatelessWidget {
-  static List<Song> _songs = [
-    Song(),
-    Song(),
-    Song(),
-    Song(),
-    Song(),
-  ];
-
   const FavoriteSongs({super.key});
 
   @override
@@ -20,18 +14,19 @@ class FavoriteSongs extends StatelessWidget {
       appBar: AppBar(
         title: Text('Favorite Songs'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: ListView.builder(
-          itemCount: _songs.length,
-          itemBuilder: (context, int index) {
-            return Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: SongCard(song: _songs[index]),
-            );
-          },
-        ),
-      ),
+      body: context.watch<FindSongsProvider>().getSongs.length == 0
+          ? Center(
+              child: Text(
+              'Todavia no hay canciones',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            ))
+          : ListView.builder(
+              itemCount: context.watch<FindSongsProvider>().getSongs.length,
+              itemBuilder: (context, int index) {
+                return SongCard(
+                    song: context.watch<FindSongsProvider>().getSongs[index]);
+              },
+            ),
     );
   }
 }

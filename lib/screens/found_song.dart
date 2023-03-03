@@ -23,7 +23,16 @@ class FoundSong extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              context.read<FindSongsProvider>().setFavorite();
+              bool isFavorite = context.read<FindSongsProvider>().getFavorite;
+
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(
+                    content: Text(isFavorite
+                        ? 'Elminado de favoritos'
+                        : 'Añaido a favoritos')));
+
+              context.read<FindSongsProvider>().setFavorite(song);
             },
           ),
         ],
