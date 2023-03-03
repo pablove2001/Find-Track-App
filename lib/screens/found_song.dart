@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/song.dart';
+import '../providers/find_songs_provider.dart';
 
 class FoundSong extends StatelessWidget {
   final Song song;
@@ -15,10 +17,14 @@ class FoundSong extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(
-              Icons.favorite_border_outlined,
+              context.watch<FindSongsProvider>().getFavorite
+                  ? Icons.favorite
+                  : Icons.favorite_border_outlined,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () {
+              context.read<FindSongsProvider>().setFavorite();
+            },
           ),
         ],
       ),

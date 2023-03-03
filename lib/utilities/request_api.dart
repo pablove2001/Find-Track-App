@@ -31,7 +31,7 @@ Future<Song?> requestApi(String base64) async {
           'https://th.bing.com/th/id/R.436c5ea3e5e38a4bfed004056b7d1e69?rik=HzFJk91la5VjWQ&pid=ImgRaw&r=0',
       spotify: result['spotify'][''] ?? 'https://open.spotify.com',
       // deezer: result['deezer']['link'] ?? 'https://www.deezer.com',
-      apple: result['apple_music']['url'] ?? 'https://music.apple.com',
+      // apple: result['apple_music']['url'] ?? 'https://music.apple.com',
       auddIo: result['song_link'] ?? 'https://www.audd.io',
     );
 

@@ -9,6 +9,8 @@ import '../utilities/record_utilities.dart';
 class FindSongsProvider with ChangeNotifier {
   bool _listening = false;
   Record _audioRecorder = Record();
+  bool _favorite = false;
+  List<Song> _songs = [];
 
   // Listeninig
   void setListening(BuildContext context) {
@@ -44,4 +46,16 @@ class FindSongsProvider with ChangeNotifier {
     _listening = false;
     notifyListeners();
   }
+
+  // favorite
+  void setFavorite() {
+    if (!_favorite) {
+      _favorite = true;
+    }
+    notifyListeners();
+  }
+
+  bool get getFavorite => _favorite;
+
+  void addFavoriteSong(Song song) {}
 }
