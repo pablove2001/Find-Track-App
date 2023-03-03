@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:record/record.dart';
 
 // Iniciar a grabar el audio
-Future<void> startRecord(Record audioRecorder) async {
+Future<String?> startRecord(Record audioRecorder) async {
   try {
     if (await audioRecorder.hasPermission()) {
       await audioRecorder.isEncoderSupported(
@@ -12,17 +12,18 @@ Future<void> startRecord(Record audioRecorder) async {
       );
       await audioRecorder.start();
       await Future.delayed(const Duration(seconds: 8));
-      await stopRecord(audioRecorder);
+      return await stopRecord(audioRecorder);
     }
   } catch (e) {
     if (kDebugMode) {
       print(e);
     }
   }
+  return null;
 }
 
 // Terminar de grabar el audio
-Future<void> stopRecord(Record audioRecorder) async {
+Future<String?> stopRecord(Record audioRecorder) async {
   final path = await audioRecorder.stop();
   if (kDebugMode) {
     print('El path es: $path');
@@ -31,9 +32,11 @@ Future<void> stopRecord(Record audioRecorder) async {
   if (path != null) {
     if (kDebugMode) {
       print('se ejecuta transofrmacion');
-      print(await convertM4aToBase64(path));
     }
+
+    return await convertM4aToBase64(path);
   }
+  return null;
 }
 
 // Convertir de .m4a a Base64
