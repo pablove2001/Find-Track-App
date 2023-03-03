@@ -24,16 +24,19 @@
 
 ### Screenshots de la app:
 - Vistas de HomePage:
+
 ![image](https://user-images.githubusercontent.com/52970365/222842658-3bc7341c-cee1-4a15-bb53-4d0251142f74.png)
 ![image](https://user-images.githubusercontent.com/52970365/222842857-24433e56-f9d1-44e9-937a-a6685dc7c500.png)
 - Error en HomePage:
 ![image](https://user-images.githubusercontent.com/52970365/222842953-c9c6b76f-e5a6-4d8e-afe1-64526212e9d0.png)
 
 -	Vistas de FavoriteSongs:
+
 ![image](https://user-images.githubusercontent.com/52970365/222843377-13978875-135c-4ae1-b996-3c2ef7565112.png)
 ![image](https://user-images.githubusercontent.com/52970365/222844646-2d1aff22-7972-4cef-9ef2-8b56b0091216.png)
 
 - Vistas de FoundSong:
+
 ![image](https://user-images.githubusercontent.com/52970365/222843892-c1ea84a7-3447-4db3-b940-4ca5ba921567.png)
 ![image](https://user-images.githubusercontent.com/52970365/222844441-d022cf5d-a8dc-41e1-8aba-52718ad82522.png)
 
