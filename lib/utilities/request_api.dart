@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:find_track_app/models/song.dart';
+import 'package:find_track_app/utilities/keys.dart';
 import 'package:http/http.dart' as http;
 
 Future<Song?> requestApi(String base64) async {
   var uri = Uri.https('api.audd.io');
   var data = {
     'return': 'apple_music,spotify,deezer',
-    'api_token': 'd8760ec47436eb40c9d8a647943ec3fd',
+    'api_token': apiToken,
     'audio': base64,
   };
 
