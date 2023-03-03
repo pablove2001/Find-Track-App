@@ -20,11 +20,17 @@ class FavoriteSongs extends StatelessWidget {
       appBar: AppBar(
         title: Text('Favorite Songs'),
       ),
-      body: ListView.builder(
-        itemCount: _songs.length,
-        itemBuilder: (context, int index) {
-          return SongCard(song: _songs[index]);
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ListView.builder(
+          itemCount: _songs.length,
+          itemBuilder: (context, int index) {
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SongCard(song: _songs[index]),
+            );
+          },
+        ),
       ),
     );
   }
